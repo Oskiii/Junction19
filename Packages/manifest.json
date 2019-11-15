@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "com.google.ar.core.arfoundation.extensions": "file:C:/Users/judej/OneDrive/Työpöytä/package",
+    "com.google.ar.core.arfoundation.extensions": "https://github.com/google-ar/arcore-unity-extensions.git",
     "com.unity.collab-proxy": "1.2.16",
     "com.unity.ext.nunit": "1.0.0",
     "com.unity.ide.vscode": "1.1.3",
@@ -43,5 +43,11 @@
     "com.unity.modules.vr": "1.0.0",
     "com.unity.modules.wind": "1.0.0",
     "com.unity.modules.xr": "1.0.0"
+  },
+  "lock": {
+    "com.google.ar.core.arfoundation.extensions": {
+      "hash": "3a33cb3f4052163c8cbfe7ad0bd7fc96e8eaad05",
+      "revision": "HEAD"
+    }
   }
 }
