@@ -3597,7 +3597,7 @@ PrefabInstance:
         type: 3}
       propertyPath: LobbyCanvas
       value: 
-      objectReference: {fileID: 1678951914}
+      objectReference: {fileID: 118255712}
     - target: {fileID: 8812981158368446129, guid: 3871334a2977a984f9c2043b39f9de36,
         type: 3}
       propertyPath: PlayerCanvas
@@ -3608,5 +3608,20 @@ PrefabInstance:
       propertyPath: DmCanvas
       value: 
       objectReference: {fileID: 2028134025}
+    - target: {fileID: 8812981158368446129, guid: 3871334a2977a984f9c2043b39f9de36,
+        type: 3}
+      propertyPath: PlayerItems
+      value: 
+      objectReference: {fileID: 2038914924}
+    - target: {fileID: 8812981158368446129, guid: 3871334a2977a984f9c2043b39f9de36,
+        type: 3}
+      propertyPath: DmItems
+      value: 
+      objectReference: {fileID: 2028134025}
+    - target: {fileID: 8812981158368446129, guid: 3871334a2977a984f9c2043b39f9de36,
+        type: 3}
+      propertyPath: LobbyItems
+      value: 
+      objectReference: {fileID: 1678951914}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3871334a2977a984f9c2043b39f9de36, type: 3}

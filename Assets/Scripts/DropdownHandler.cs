@@ -30,7 +30,8 @@ public class DropdownHandler : MonoBehaviour {
   }
   public void SpawnOption() {
     Debug.Log("Spawning " + dropdown.value);
-    Instantiate(objectOptions[dropdown.value], new Vector3(0, 1, 0), Quaternion.identity);
+    WorldManager.Instance.CreateItem(dropdown.value);
+    //Instantiate(objectOptions[dropdown.value], new Vector3(0, 1, 0), Quaternion.identity);
   }
 
   public void SetWeather() {
