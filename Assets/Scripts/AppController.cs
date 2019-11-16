@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using Google.XR.ARCoreExtensions;
 using UnityEngine;
@@ -9,6 +10,8 @@ public class AppController : MonoBehaviour
 {
     public List<Transform> CloudAnchors;
     public static event Action<Transform> CloudAnchorCreated;
+    [SerializeField]
+    private string idToLoad = "ua-72534c9bd7f327a513597f1354706d75";
 
     [SerializeField]
     private GameObject HostedPointPrefab;
@@ -37,15 +40,23 @@ public class AppController : MonoBehaviour
     private AppMode m_AppMode = AppMode.TouchToHostCloudReferencePoint;
     private ARCloudReferencePoint m_CloudReferencePoint;
     private string m_CloudReferenceId;
-    void Start()
+    IEnumerator Start()
     {
         InputField.onEndEdit.AddListener(OnInputEndEdit);
+
+        yield return new WaitForSeconds(5f);
+        LoadPointFromId(idToLoad);
     }
     private void OnInputEndEdit(string text)
     {
+        LoadPointFromId(text);
+    }
+
+    private void LoadPointFromId(string id)
+    {
         m_CloudReferenceId = string.Empty;
         m_CloudReferencePoint =
-            ReferencePointManager.ResolveCloudReferenceId(text);
+            ReferencePointManager.ResolveCloudReferenceId(id);
         if (m_CloudReferencePoint == null)
         {
             OutputText.text = "Resolve Failed!";
@@ -55,6 +66,7 @@ public class AppController : MonoBehaviour
         // Wait for the reference point to be ready.
         m_AppMode = AppMode.WaitingForResolvedReferencePoint;
     }
+
     private void Update()
     {
         if (m_AppMode == AppMode.TouchToHostCloudReferencePoint)
@@ -160,6 +172,8 @@ public class AppController : MonoBehaviour
         CloudReferenceState cloudReferenceState =
             m_CloudReferencePoint.cloudReferenceState;
         OutputText.text += " - " + cloudReferenceState.ToString();
+
+        print("ID: " + m_CloudReferencePoint.cloudReferenceId);
 
         if (cloudReferenceState == CloudReferenceState.Success)
         {
