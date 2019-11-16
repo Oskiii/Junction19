@@ -118,13 +118,11 @@ public class WorldManager : NetworkBehaviour
     [Server]
     public void DeleteItem(int id)
     {
-        Debug.Log("Trying to delete");
         var worldItem = worldItems.Find(_ => _.id == id);
         if (worldItem == null)
         {
             return;
         }
-        Debug.Log("Found");
 
         RpcDeleteItem(id);
         worldItems.Remove(worldItem);
@@ -142,11 +140,6 @@ public class WorldManager : NetworkBehaviour
 
         worldItems.Remove(worldItem);
         Destroy(worldItem.obj);
-    }
-
-    private void DisableClouds()
-    {
-        
     }
 }
 
