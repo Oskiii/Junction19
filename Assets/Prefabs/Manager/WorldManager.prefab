@@ -48,6 +48,8 @@ MonoBehaviour:
   - {fileID: -8291583569092750504, guid: a655ff84209284049a43e00b0e14b84d, type: 3}
   - {fileID: 5806952774556534245, guid: 176299a76ecfc7544b22a66fae200ac7, type: 3}
   - {fileID: -8507360537194752961, guid: 6bbfea6690ef7724ba495c866081f855, type: 3}
+  - {fileID: 6589341474953684580, guid: 44062bf11661a4e72a1d4ab5a5cd83a8, type: 3}
+  - {fileID: 6606970035726623112, guid: 97d6c0dfa4a9f49b49f2878560ed4738, type: 3}
   World: {fileID: 0}
   worldItems: []
 --- !u!114 &888785642459931328
