@@ -18,6 +18,8 @@ public class ARScanner : MonoBehaviour
     [SerializeField]
     private GameObject ResolvedPointPrefab;
     [SerializeField]
+    private ARPlaneManager _planeManager;
+    [SerializeField]
     private ARReferencePointManager ReferencePointManager;
     [SerializeField]
     private ARRaycastManager RaycastManager;
@@ -63,6 +65,15 @@ public class ARScanner : MonoBehaviour
         {
             Destroy(item.gameObject);
         }
+
+        SetAllPlanesActive(false);
+    }
+
+    private void SetAllPlanesActive(bool value)
+    {
+        _planeManager.enabled = false;
+        foreach (var plane in _planeManager.trackables)
+            plane.gameObject.SetActive(value);
     }
 
     private IEnumerator LoadPointFromIdInTime(string id, float time)
