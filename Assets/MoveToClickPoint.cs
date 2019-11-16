@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using DG.Tweening;
+using UnityEngine;
 using UnityEngine.AI;
 
 public class MoveToClickPoint : MonoBehaviour
@@ -10,6 +11,8 @@ public class MoveToClickPoint : MonoBehaviour
     private MoveRadius _moveRadiusInstance;
 
     private Selectable _selectable;
+
+    private Tweener _moveTween;
 
     private void Start()
     {
@@ -51,11 +54,13 @@ public class MoveToClickPoint : MonoBehaviour
     private void MoveToIfInRadiusAndUnselect(Vector3 pos)
     {
         float dist = (transform.position - pos).magnitude;
-        print(dist);
         Debug.DrawLine(transform.position, pos, Color.red, 5f);
+
+        _moveTween.Complete();
+
         if (dist < _maxMoveRadius)
         {
-            transform.position = pos;
+            _moveTween = transform.DOMove(pos, dist);
             _selectable.UnSelect();
         }
     }
