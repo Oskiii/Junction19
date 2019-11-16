@@ -9,15 +9,15 @@ public class PlayerManager : NetworkBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        MultiplayerManager.Instance.LobbyCanvas.gameObject.SetActive(false);
+        MultiplayerManager.Instance.LobbyCanvas.SetActive(false);
         
         if (isServer)
         {
-            MultiplayerManager.Instance.DmCanvas.gameObject.SetActive(true);
+            MultiplayerManager.Instance.DmCanvas.SetActive(true);
         }
         else
         {
-            MultiplayerManager.Instance.PlayerCanvas.gameObject.SetActive(true);
+            MultiplayerManager.Instance.PlayerCanvas.SetActive(true);
         }
     }
 }
