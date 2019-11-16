@@ -8,7 +8,7 @@ public class Selectable : MonoBehaviour
   private Material originalMaterial;
   private static Selectable selectedObject;
   private Renderer renderer;
-  private Vector3 mOffset;
+  private Camera _camera;
   private float mZCoord;
 
   public bool IsSelected { get; private set; }
@@ -20,6 +20,7 @@ public class Selectable : MonoBehaviour
   private void Start()
   {
     renderer = GetComponentInChildren<Renderer>();
+    _camera = FindObjectOfType<Camera>();
     originalMaterial = renderer.material;
   }
 
@@ -45,13 +46,11 @@ public class Selectable : MonoBehaviour
       Select();
     }
 
-    mZCoord = Camera.main.WorldToScreenPoint(transform.position).z;
-    mOffset = transform.position - GetMouseAsWorldPoint();
+    mZCoord = _camera.WorldToScreenPoint(transform.position).z;
   }
 
-  private Vector3 GetMouseAsWorldPoint()
+  public Vector3 GetMouseAsWorldPoint()
   {
-
     // Pixel coordinates of mouse (x,y)
     Vector3 mousePoint = Input.mousePosition;
 
@@ -59,19 +58,13 @@ public class Selectable : MonoBehaviour
     mousePoint.z = mZCoord;
 
     // Convert it to world points
-    return Camera.main.ScreenToWorldPoint(mousePoint);
+    return _camera.ScreenToWorldPoint(mousePoint);
 
   }
 
   private void ResetSelectedObject()
   {
     if (selectedObject) selectedObject.UnSelect();
-  }
-
-  private void OnMouseDrag()
-  {
-    if (selectedObject && selectedObject.gameObject == gameObject)
-      transform.position = GetMouseAsWorldPoint() + mOffset;
   }
 
   public void Select()

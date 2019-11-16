@@ -828,6 +828,7 @@ GameObject:
   - component: {fileID: -6823441524417820326}
   - component: {fileID: 4918060558153538321}
   - component: {fileID: -9071264105465935446}
+  - component: {fileID: 7029644687491387647}
   m_Layer: 0
   m_Name: FootmanHP
   m_TagString: Untagged
@@ -893,10 +894,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 2.2335463
+  m_Radius: 0.8034376
+  m_Height: 2.555138
   m_Direction: 1
-  m_Center: {x: 0, y: 0.8636508, z: 0}
+  m_Center: {x: 0.015502214, y: 1.0244467, z: 0.2026794}
 --- !u!114 &-9071264105465935446
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -912,3 +913,15 @@ MonoBehaviour:
   _maxMoveRadius: 4
   _moveRadiusPrefab: {fileID: 6947928174851101214, guid: 228c735d088af400f896e67a6398caf0,
     type: 3}
+--- !u!114 &7029644687491387647
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100048}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff59a8d6f932a435f8264b6b153bc94e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
