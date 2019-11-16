@@ -14,6 +14,8 @@ public class MoveToClickPoint : MonoBehaviour
 
     private Tweener _moveTween;
 
+    public Character Character;
+
     private void Start()
     {
         _selectable = GetComponentInChildren<Selectable>();
@@ -53,7 +55,9 @@ public class MoveToClickPoint : MonoBehaviour
 
     private void MoveToIfInRadiusAndUnselect(Vector3 pos)
     {
-        float dist = (transform.position - pos).magnitude;
+        var localPosition = WorldManager.Instance.World.transform.InverseTransformPoint(transform.position);
+        PlayerManager.Instance.LocalClient.MoveCharacter(Character.playerId, localPosition);
+        /*float dist = (transform.position - pos).magnitude;
         Debug.DrawLine(transform.position, pos, Color.red, 5f);
 
         _moveTween.Complete();
@@ -62,6 +66,6 @@ public class MoveToClickPoint : MonoBehaviour
         {
             _moveTween = transform.DOMove(pos, dist);
             _selectable.UnSelect();
-        }
+        }*/
     }
 }

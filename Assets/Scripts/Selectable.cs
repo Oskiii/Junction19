@@ -19,7 +19,7 @@ public class Selectable : MonoBehaviour
 
   private void Start()
   {
-    renderer = GetComponent<Renderer>();
+    renderer = GetComponentInChildren<Renderer>();
     _camera = FindObjectOfType<Camera>();
     originalMaterial = renderer.material;
   }
