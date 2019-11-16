@@ -49,9 +49,11 @@ public class WeatherManager : NetworkBehaviour {
       switch (currentWeather) {
         case WeatherType.Clear:
           clouds.SetActive(false);
+          rainyClouds.SetActive(false);
           break;
         case WeatherType.Cloudy:
           clouds.SetActive(true);
+          rainyClouds.SetActive(false);
           break;
         case WeatherType.Rainy:
           rainyClouds.SetActive(true);
