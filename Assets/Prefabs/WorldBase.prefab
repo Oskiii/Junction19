@@ -276,7 +276,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: a94fd77bed996498b87e062b18a07119, type: 2}
+      objectReference: {fileID: 2100000, guid: 63d0da0d6672e4e6e97493032e49c8cc, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f4ce6cdb5ee5848f996eb2bfff2f3eb4, type: 3}
 --- !u!4 &5121094442011898680 stripped
@@ -367,11 +367,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6225382014474220556}
     m_Modifications:
-    - target: {fileID: 3853925940657137724, guid: 20ddef2cbc43e45d6bbc90b1ef324999,
-        type: 3}
-      propertyPath: m_Name
-      value: CloudParticles
-      objectReference: {fileID: 0}
     - target: {fileID: 546209088031459588, guid: 20ddef2cbc43e45d6bbc90b1ef324999,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -426,6 +421,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3853925940657137724, guid: 20ddef2cbc43e45d6bbc90b1ef324999,
+        type: 3}
+      propertyPath: m_Name
+      value: CloudParticles
       objectReference: {fileID: 0}
     - target: {fileID: 7173362527644936883, guid: 20ddef2cbc43e45d6bbc90b1ef324999,
         type: 3}
