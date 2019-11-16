@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Google.XR.ARCoreExtensions;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -7,13 +8,21 @@ using UnityEngine.XR.ARFoundation;
 public class AppController : MonoBehaviour
 {
     public List<Transform> CloudAnchors;
+    public static event Action<Transform> CloudAnchorCreated;
 
-    public GameObject HostedPointPrefab;
-    public GameObject ResolvedPointPrefab;
-    public ARReferencePointManager ReferencePointManager;
-    public ARRaycastManager RaycastManager;
-    public InputField InputField;
-    public Text OutputText;
+    [SerializeField]
+    private GameObject HostedPointPrefab;
+    [SerializeField]
+    private GameObject ResolvedPointPrefab;
+    [SerializeField]
+    private ARReferencePointManager ReferencePointManager;
+    [SerializeField]
+    private ARRaycastManager RaycastManager;
+    [SerializeField]
+    private InputField InputField;
+    [SerializeField]
+    private Text OutputText;
+
     private enum AppMode
     {
         // Wait for user to tap screen to begin hosting a point.
@@ -161,7 +170,8 @@ public class AppController : MonoBehaviour
             cloudAnchor.transform.SetParent(
                 m_CloudReferencePoint.transform, false);
 
-            CloudAnchors.Add(cloudAnchor.transform);
+            CloudAnchors.Add(m_CloudReferencePoint.transform);
+            CloudAnchorCreated?.Invoke(cloudAnchor.transform);
 
             m_CloudReferencePoint = null;
             m_AppMode = AppMode.TouchToHostCloudReferencePoint;
