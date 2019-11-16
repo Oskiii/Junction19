@@ -7,6 +7,7 @@ using UnityEngine.Networking;
 public class PlayerManager : NetworkBehaviour
 {
     public GameObject CharacterSelect;
+    public GameObject Dieroller;
     public List<GameObject> CharacterModels;
     public List<Character> Characters;
 
@@ -22,12 +23,14 @@ public class PlayerManager : NetworkBehaviour
     public void ShowCharacterScreen()
     {
         CharacterSelect.SetActive(true);
+        Dieroller.SetActive(false);
     }
 
     [Client]
     public void SelectCharacter(int id)
     {
         CharacterSelect.SetActive(false);
+        Dieroller.SetActive(true);
         LocalClient.SelectCharacter(id);
     }
 

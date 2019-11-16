@@ -1830,6 +1830,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: DieRoller
       objectReference: {fileID: 0}
+    - target: {fileID: 1594967095422861381, guid: 567f98fd02e30453aa0016650905f6ce,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1594967095422861380, guid: 567f98fd02e30453aa0016650905f6ce,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2260,6 +2265,12 @@ PrefabInstance:
 --- !u!224 &1016646972 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1594967095422861380, guid: 567f98fd02e30453aa0016650905f6ce,
+    type: 3}
+  m_PrefabInstance: {fileID: 1016646971}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1016646973 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1594967095422861381, guid: 567f98fd02e30453aa0016650905f6ce,
     type: 3}
   m_PrefabInstance: {fileID: 1016646971}
   m_PrefabAsset: {fileID: 0}
@@ -3831,6 +3842,11 @@ PrefabInstance:
       propertyPath: CharacterSelect
       value: 
       objectReference: {fileID: 7098681956218574350}
+    - target: {fileID: 1483181706053443344, guid: 8b363e57546f5264f8c31ba8d2326bea,
+        type: 3}
+      propertyPath: Dieroller
+      value: 
+      objectReference: {fileID: 1016646973}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8b363e57546f5264f8c31ba8d2326bea, type: 3}
 --- !u!1001 &1608168361578225609
