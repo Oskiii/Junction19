@@ -21,6 +21,6 @@ public class WorldSpawner : MonoBehaviour
         obj.transform.SetParent(t, false);
         obj.transform.localScale = new Vector3(0.3f, 0.3f, 0.3f);
 
-        ARScanner.Instance.StopScanning();
+        ARScanner.Instance.StopScanningAndHide();
     }
 }

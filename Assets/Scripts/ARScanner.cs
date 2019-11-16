@@ -40,6 +40,7 @@ public class ARScanner : MonoBehaviour
     private AppMode m_AppMode = AppMode.TouchToHostCloudReferencePoint;
     private ARCloudReferencePoint m_CloudReferencePoint;
     private string m_CloudReferenceId;
+    private List<GameObject> _debugAnchorObjects = new List<GameObject>();
 
     public static ARScanner Instance;
 
@@ -54,10 +55,15 @@ public class ARScanner : MonoBehaviour
         LoadPointFromId(idToLoad);
     }
 
-    public void StopScanning()
+    public void StopScanningAndHide()
     {
         gameObject.SetActive(false);
         _scanningCanvas.gameObject.SetActive(false);
+
+        foreach (var item in _debugAnchorObjects)
+        {
+            Destroy(item.gameObject);
+        }
     }
 
     private void LoadPointFromId(string id)
@@ -144,6 +150,8 @@ public class ARScanner : MonoBehaviour
             cloudAnchor.transform.SetParent(
                 m_CloudReferencePoint.transform, false);
 
+            _debugAnchorObjects.Add(cloudAnchor);
+
             m_CloudReferenceId = m_CloudReferencePoint.cloudReferenceId;
             m_CloudReferencePoint = null;
             m_AppMode = AppMode.TouchToResolveCloudReferencePoint;
@@ -185,15 +193,8 @@ public class ARScanner : MonoBehaviour
 
         if (cloudReferenceState == CloudReferenceState.Success)
         {
-            GameObject cloudAnchor = Instantiate(
-                ResolvedPointPrefab,
-                Vector3.zero,
-                Quaternion.identity);
-            cloudAnchor.transform.SetParent(
-                m_CloudReferencePoint.transform, false);
-
             CloudAnchors.Add(m_CloudReferencePoint.transform);
-            CloudAnchorCreated?.Invoke(cloudAnchor.transform);
+            CloudAnchorCreated?.Invoke(m_CloudReferencePoint.transform);
 
             m_CloudReferencePoint = null;
             m_AppMode = AppMode.TouchToHostCloudReferencePoint;
