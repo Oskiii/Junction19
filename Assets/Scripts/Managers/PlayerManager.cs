@@ -9,6 +9,8 @@ public class PlayerManager : NetworkBehaviour
     public GameObject CharacterSelect;
     public List<GameObject> CharacterModels;
     public List<Character> Characters;
+
+    public Client LocalClient;
     public static PlayerManager Instance { get; private set; }
 
     public void Awake()
@@ -19,16 +21,14 @@ public class PlayerManager : NetworkBehaviour
     [Client]
     public void ShowCharacterScreen()
     {
-        PlayerManager.Instance.CharacterSelect.SetActive(true);
+        CharacterSelect.SetActive(true);
     }
     
     [Client]
     public void SelectCharacter(int id)
     {
-        var players = ClientScene.localPlayers;
-        var player = players[0];
-        PlayerManager.Instance.CharacterSelect.SetActive(false);
-        player.gameObject.GetComponent<Client>().SelectCharacter(id, player.playerControllerId);
+        CharacterSelect.SetActive(false);
+        LocalClient.SelectCharacter(id);
     }
 
     [Server]

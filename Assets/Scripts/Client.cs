@@ -23,14 +23,19 @@ public class Client : NetworkBehaviour
     }
     
     [Client]
-    public void SelectCharacter(int characterId, int playerID)
+    public void SelectCharacter(int characterId)
     {
-        CmdSetCharacter(characterId, playerID);
+        CmdSetCharacter(characterId, netId);
     }
 
     [Command]
-    private void CmdSetCharacter(int characterId, int playerId)
+    private void CmdSetCharacter(int characterId, NetworkInstanceId playerId)
     {
-        PlayerManager.Instance.SetCharacter(characterId, playerId);
+        PlayerManager.Instance.SetCharacter(characterId, (int)playerId.Value);
+    }
+
+    public override void OnStartLocalPlayer()
+    {
+        PlayerManager.Instance.LocalClient = this;
     }
 }
