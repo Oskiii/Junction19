@@ -17,13 +17,13 @@ public class PlayerManager : NetworkBehaviour
     {
         Instance = this;
     }
-    
+
     [Client]
     public void ShowCharacterScreen()
     {
         CharacterSelect.SetActive(true);
     }
-    
+
     [Client]
     public void SelectCharacter(int id)
     {
@@ -41,8 +41,8 @@ public class PlayerManager : NetworkBehaviour
         Characters.Add(new Character()
         {
             playerId = playerId,
-            characterId = characterId,
-            obj = character
+                characterId = characterId,
+                obj = character
         });
     }
 
@@ -61,12 +61,12 @@ public class PlayerManager : NetworkBehaviour
         character.GetComponent<MoveToClickPoint>().Character = sceneCharacter;
         Characters.Add(sceneCharacter);
     }
-    
+
     [ClientRpc]
     private void RpcSyncedPos(
         int characterId,
         int playerId,
-        Vector3 transformLocalPosition, 
+        Vector3 transformLocalPosition,
         Quaternion transformLocalRotation,
         Vector3 transformLocalScale)
     {
@@ -76,9 +76,9 @@ public class PlayerManager : NetworkBehaviour
         {
             character = new Character()
             {
-                characterId = characterId,
-                playerId = playerId,
-                obj = Instantiate(CharacterModels[characterId], WorldManager.Instance.World.transform)
+            characterId = characterId,
+            playerId = playerId,
+            obj = Instantiate(CharacterModels[characterId], WorldManager.Instance.World.transform)
             };
             character.obj.GetComponent<MoveToClickPoint>().Character = character;
             Destroy(character.obj.GetComponent<Draggable>());
@@ -88,8 +88,6 @@ public class PlayerManager : NetworkBehaviour
         character.obj.transform.localRotation = transformLocalRotation;
         character.obj.transform.localScale = transformLocalScale;
     }
-    
-    
 
     [Server]
     private void UpdateItemPositions()
@@ -113,12 +111,12 @@ public class PlayerManager : NetworkBehaviour
         }
     }
 
-    public void SetCharacterMovePoint(int playerId, Vector3 worldLocalPosition, float dist)
+    public void SetCharacterMovePoint(int playerId, Vector3 worldLocalPosition, float dist, Vector3 worldDir)
     {
         var character = Characters.Find(_ => _.playerId == playerId);
         if (character != null)
         {
-            character.obj.GetComponent<MoveCharacter>().MoveTowards(worldLocalPosition, dist);
+            character.obj.GetComponent<MoveCharacter>().MoveTowards(worldLocalPosition, dist, worldDir);
         }
     }
 }
