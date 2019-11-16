@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Unity.Jobs.LowLevel.Unsafe;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Networking;
@@ -40,6 +41,7 @@ public class WorldManager : NetworkBehaviour
             obj = obj.gameObject,
             item = item
         };
+        obj.GetComponent<WorldItemContainer>().WorldItem = worldItem;
         worldItems.Add(worldItem);
         RpcCreateItem(worldItem.id, worldItem.item);
     }
@@ -55,6 +57,7 @@ public class WorldManager : NetworkBehaviour
             obj = obj.gameObject,
             item = item
         };
+        obj.GetComponent<WorldItemContainer>().WorldItem = worldItem;
         worldItems.Add(worldItem);
     }
 
@@ -90,6 +93,7 @@ public class WorldManager : NetworkBehaviour
                 item = item,
                 obj = Instantiate(prefabs[item], World.transform).gameObject
             };
+            worldItem.obj.GetComponent<WorldItemContainer>().WorldItem = worldItem;
             worldItems.Add(worldItem);
         };
         worldItem.obj.transform.localPosition = transformLocalPosition;
@@ -108,14 +112,17 @@ public class WorldManager : NetworkBehaviour
     [Server]
     public void DeleteItem(int id)
     {
+        Debug.Log("Trying to delete");
         var worldItem = worldItems.Find(_ => _.id == id);
         if (worldItem == null)
         {
             return;
         }
+        Debug.Log("Found");
 
         RpcDeleteItem(id);
         worldItems.Remove(worldItem);
+        Destroy(worldItem.obj);
     }
 
     [ClientRpc]
@@ -128,6 +135,7 @@ public class WorldManager : NetworkBehaviour
         }
 
         worldItems.Remove(worldItem);
+        Destroy(worldItem.obj);
     }
 
     private void DisableClouds()
