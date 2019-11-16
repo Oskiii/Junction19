@@ -37,7 +37,7 @@ public class PlayerManager : NetworkBehaviour
         Debug.Log($"Player {playerId }Set characterId as {characterId}");
         var character = Instantiate(CharacterModels[characterId], WorldManager.Instance.World.transform);
         character.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
-        character.GetComponent<MoveToClickPoint>();
+        character.GetComponent<MoveToClickPoint>().enabled = false;
         Characters.Add(new Character()
         {
             playerId = playerId,
@@ -51,6 +51,7 @@ public class PlayerManager : NetworkBehaviour
     {
         if (isServer) return;
         var character = Instantiate(CharacterModels[characterId], WorldManager.Instance.World.transform);
+        character.GetComponent<Draggable>().enabled = false;
         Characters.Add(new Character()
         {
             playerId = playerId,
@@ -77,6 +78,7 @@ public class PlayerManager : NetworkBehaviour
                 playerId = playerId,
                 obj = Instantiate(CharacterModels[characterId], WorldManager.Instance.World.transform)
             };
+            character.obj.GetComponent<Draggable>().enabled = false;
             Characters.Add(character);
         };
         character.obj.transform.localPosition = transformLocalPosition;
