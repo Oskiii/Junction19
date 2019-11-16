@@ -54,7 +54,8 @@ public class Selectable : MonoBehaviour {
   }
 
   private void OnMouseDrag() {
-    transform.position = GetMouseAsWorldPoint() + mOffset;
+    if (selectedObject && selectedObject.gameObject == gameObject)
+      transform.position = GetMouseAsWorldPoint() + mOffset;
   }
 
   public void Select() {
