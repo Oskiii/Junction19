@@ -23,6 +23,12 @@ public class WorldManager : NetworkBehaviour
         Instance = this;
     }
     
+    public void HideWorld()
+    {
+        World.SetActive(false);
+        Active = false;
+    }
+    
     public void SpawnWorld()
     {
         World.SetActive(true);

@@ -13,12 +13,13 @@ public class Client : NetworkBehaviour
 
         if (isServer)
         {
-            MultiplayerManager.Instance.DmCanvas.SetActive(true);
+            MultiplayerManager.Instance.DmItems.SetActive(true);
             WorldManager.Instance.SpawnWorld();
         }
         else
         {
-            MultiplayerManager.Instance.PlayerCanvas.SetActive(true);
+            WorldManager.Instance.HideWorld();
+            MultiplayerManager.Instance.PlayerItems.SetActive(true);
         }
     }
 
