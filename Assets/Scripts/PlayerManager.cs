@@ -14,6 +14,7 @@ public class PlayerManager : NetworkBehaviour
         if (isServer)
         {
             MultiplayerManager.Instance.DmCanvas.SetActive(true);
+            WorldManager.Instance.SpawnWorld();
         }
         else
         {
