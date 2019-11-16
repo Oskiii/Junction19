@@ -6,25 +6,34 @@ using UnityEngine;
 public class DropdownHandler : MonoBehaviour {
 
   public List<GameObject> objectOptions;
+  public bool populateFromEnum = false;
   public TMP_Dropdown dropdown;
-
+  public WeatherManager weatherManager;
   private int selectedIndex = 0;
 
   void Start() {
     dropdown = GetComponent<TMP_Dropdown>();
     List<string> optionsNames = new List<string>();
-    foreach (var item in objectOptions) {
-      optionsNames.Add(item.name);
+
+    if (!populateFromEnum) {
+      foreach (var item in objectOptions) {
+        optionsNames.Add(item.name);
+      }
+    } else {
+      string[] weatherEnumNames = System.Enum.GetNames(typeof(WeatherType));
+      foreach (var item in weatherEnumNames) {
+        optionsNames.Add(item);
+      }
     }
     dropdown.AddOptions(optionsNames);
-    dropdown.onValueChanged.AddListener(SetIndex);
   }
   public void SpawnOption() {
-    Debug.Log("Spawning " + selectedIndex);
-    Instantiate(objectOptions[selectedIndex], new Vector3(0, 1, 0), Quaternion.identity);
+    Debug.Log("Spawning " + dropdown.value);
+    Instantiate(objectOptions[dropdown.value], new Vector3(0, 1, 0), Quaternion.identity);
   }
 
-  public void SetIndex(int index) {
-    selectedIndex = index;
+  public void SetWeather() {
+    WeatherType selectedEnum = (WeatherType) System.Enum.Parse(typeof(WeatherType), dropdown.options[dropdown.value].text);
+    weatherManager.SetWeather(selectedEnum);
   }
 }

@@ -20,8 +20,9 @@ public class WorldSpawner : MonoBehaviour
         WorldManager.Instance.SpawnWorld();
         var obj = WorldManager.Instance.World;
         obj.transform.SetParent(t, false);
-        obj.transform.localScale = new Vector3(0.3f, 0.3f, 0.3f);
+        obj.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
 
+        PlayerManager.Instance.ShowCharacterScreen();
         ARScanner.Instance.StopScanningAndHide();
     }
 }

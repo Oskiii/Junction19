@@ -81,7 +81,6 @@ public class WorldManager : NetworkBehaviour
         Vector3 transformLocalScale)
     {
         if (isServer) return;
-        Debug.Log($"Updating position for {id}");
         var worldItem = worldItems.Find(_ => _.id == id);
         if (worldItem == null)
         {
@@ -93,7 +92,6 @@ public class WorldManager : NetworkBehaviour
             };
             worldItems.Add(worldItem);
         };
-        Debug.Log($"Found object for {id}");
         worldItem.obj.transform.localPosition = transformLocalPosition;
         worldItem.obj.transform.localRotation = transformLocalRotation;
         worldItem.obj.transform.localScale = transformLocalScale;

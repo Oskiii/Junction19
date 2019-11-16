@@ -80,4 +80,9 @@ public class MultiplayerManager : NetworkManager
     {
         Debug.Log("Client " + conn.connectionId + " Connected!"); ;
     }
+
+    public override void OnServerAddPlayer(NetworkConnection conn, short playerControllerId)
+    {
+        base.OnServerAddPlayer(conn, playerControllerId);
+    }
 }

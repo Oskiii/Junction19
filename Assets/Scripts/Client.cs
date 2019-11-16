@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Networking;
 #pragma warning disable 618
 
-public class PlayerManager : NetworkBehaviour
+public class Client : NetworkBehaviour
 {
     // Start is called before the first frame update
     void Start()
@@ -20,5 +20,22 @@ public class PlayerManager : NetworkBehaviour
         {
             MultiplayerManager.Instance.PlayerCanvas.SetActive(true);
         }
+    }
+    
+    [Client]
+    public void SelectCharacter(int characterId)
+    {
+        CmdSetCharacter(characterId, netId);
+    }
+
+    [Command]
+    private void CmdSetCharacter(int characterId, NetworkInstanceId playerId)
+    {
+        PlayerManager.Instance.SetCharacter(characterId, (int)playerId.Value);
+    }
+
+    public override void OnStartLocalPlayer()
+    {
+        PlayerManager.Instance.LocalClient = this;
     }
 }

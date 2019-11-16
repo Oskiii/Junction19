@@ -533,6 +533,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4718552058532164}
   - component: {fileID: 95640295303221614}
+  - component: {fileID: 4367397152498565813}
+  - component: {fileID: -6704045439946456386}
+  - component: {fileID: 3668785508540477680}
   m_Layer: 0
   m_Name: FootmanPBR
   m_TagString: Untagged
@@ -564,7 +567,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1812659917213882}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 9000000, guid: d06688f72e50aaa48b0dea3435bfe092, type: 3}
   m_Controller: {fileID: 9100000, guid: 8aba7a975cc08dd4fb1345966135537b, type: 2}
   m_CullingMode: 1
@@ -575,6 +578,48 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &4367397152498565813
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1812659917213882}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae6902693b98c44d98e1240c1da66d49, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  highlightMaterial: {fileID: 2100000, guid: b006342344ca8e94b8f032adb9a687fe, type: 2}
+--- !u!136 &-6704045439946456386
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1812659917213882}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 2.2335463
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.8636508, z: 0}
+--- !u!114 &3668785508540477680
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1812659917213882}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d393fba77bfc449fb02579eaf3dbc45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maxMoveRadius: 4
+  _moveRadiusPrefab: {fileID: 6947928174851101214, guid: 228c735d088af400f896e67a6398caf0,
+    type: 3}
 --- !u!1 &1849239188663008
 GameObject:
   m_ObjectHideFlags: 0
