@@ -3130,35 +3130,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 4727532165311462217, guid: 463c1a977dd454144b84031bad27aeb7,
-        type: 3}
-      propertyPath: prefabs.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 4727532165311462217, guid: 463c1a977dd454144b84031bad27aeb7,
-        type: 3}
-      propertyPath: prefabs.Array.data[0]
-      value: 
-      objectReference: {fileID: 5806952774556534245, guid: 176299a76ecfc7544b22a66fae200ac7,
-        type: 3}
-    - target: {fileID: 4727532165311462217, guid: 463c1a977dd454144b84031bad27aeb7,
-        type: 3}
-      propertyPath: prefabs.Array.data[1]
-      value: 
-      objectReference: {fileID: 5378414957858835463, guid: aad05534a7ba0dd49b8c54ce188308ec,
-        type: 3}
-    - target: {fileID: 4727532165311462217, guid: 463c1a977dd454144b84031bad27aeb7,
-        type: 3}
-      propertyPath: prefabs.Array.data[2]
-      value: 
-      objectReference: {fileID: 7399035686256866736, guid: c9bc790a133e19c40b64d6db4cfb7a22,
-        type: 3}
-    - target: {fileID: 4727532165311462217, guid: 463c1a977dd454144b84031bad27aeb7,
-        type: 3}
-      propertyPath: prefabs.Array.data[3]
-      value: 
-      objectReference: {fileID: -8507360537194752961, guid: 6bbfea6690ef7724ba495c866081f855,
-        type: 3}
     - target: {fileID: 1608168361924846380, guid: 463c1a977dd454144b84031bad27aeb7,
         type: 3}
       propertyPath: m_Name

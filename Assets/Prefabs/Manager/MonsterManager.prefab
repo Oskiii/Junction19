@@ -77,5 +77,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b754c757198e47c381819c0c38a8ffb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefabs: []
+  prefabs:
+  - {fileID: 5806952774556534245, guid: 176299a76ecfc7544b22a66fae200ac7, type: 3}
+  - {fileID: 5378414957858835463, guid: aad05534a7ba0dd49b8c54ce188308ec, type: 3}
+  - {fileID: 7399035686256866736, guid: c9bc790a133e19c40b64d6db4cfb7a22, type: 3}
+  - {fileID: -8507360537194752961, guid: 6bbfea6690ef7724ba495c866081f855, type: 3}
   monsters: []
