@@ -37,6 +37,7 @@ public class PlayerManager : NetworkBehaviour
         Debug.Log($"Player {playerId }Set characterId as {characterId}");
         var character = Instantiate(CharacterModels[characterId], WorldManager.Instance.World.transform);
         character.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
+        character.GetComponent<MoveToClickPoint>();
         Characters.Add(new Character()
         {
             playerId = playerId,
