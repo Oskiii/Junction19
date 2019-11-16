@@ -71,6 +71,7 @@ public class Selectable : MonoBehaviour
   {
     IsSelected = true;
     ClickedThisFrame = true;
+    selectedObject = this;
     renderer.material = highlightMaterial;
     Selected?.Invoke();
   }
