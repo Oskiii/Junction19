@@ -1,6 +1,8 @@
+using System;
 using UnityEngine;
 
-public class Selectable : MonoBehaviour {
+public class Selectable : MonoBehaviour
+{
 
   public Material highlightMaterial;
   private Material originalMaterial;
@@ -9,22 +11,37 @@ public class Selectable : MonoBehaviour {
   private Vector3 mOffset;
   private float mZCoord;
 
-  private void Start() {
+  public bool IsSelected { get; private set; }
+  public bool ClickedThisFrame { get; private set; }
+
+  public event Action Selected;
+  public event Action UnSelected;
+
+  private void Start()
+  {
     renderer = GetComponentInChildren<Renderer>();
     originalMaterial = renderer.material;
   }
 
-  private void Update() {
+  private void Update()
+  {
     // Reset the selectedObject
-    if (Input.GetKeyDown(KeyCode.R)) {
+    if (Input.GetKeyDown(KeyCode.R))
+    {
       ResetSelectedObject();
     }
   }
 
-  private void OnMouseDown() {
-    if (!selectedObject || gameObject != selectedObject.gameObject) {
+  private void LateUpdate()
+  {
+    ClickedThisFrame = false;
+  }
+
+  private void OnMouseDown()
+  {
+    if (!selectedObject || gameObject != selectedObject.gameObject)
+    {
       if (selectedObject) selectedObject.UnSelect();
-      selectedObject = this;
       Select();
     }
 
@@ -32,37 +49,44 @@ public class Selectable : MonoBehaviour {
     mOffset = transform.position - GetMouseAsWorldPoint();
   }
 
-  private Vector3 GetMouseAsWorldPoint() {
+  private Vector3 GetMouseAsWorldPoint()
+  {
 
     // Pixel coordinates of mouse (x,y)
-
     Vector3 mousePoint = Input.mousePosition;
 
     // z coordinate of game object on screen
-
     mousePoint.z = mZCoord;
 
     // Convert it to world points
-
     return Camera.main.ScreenToWorldPoint(mousePoint);
 
   }
 
-  private void ResetSelectedObject() {
+  private void ResetSelectedObject()
+  {
     if (selectedObject) selectedObject.UnSelect();
-    selectedObject = null;
   }
 
-  private void OnMouseDrag() {
+  private void OnMouseDrag()
+  {
     if (selectedObject && selectedObject.gameObject == gameObject)
       transform.position = GetMouseAsWorldPoint() + mOffset;
   }
 
-  public void Select() {
+  public void Select()
+  {
+    IsSelected = true;
+    ClickedThisFrame = true;
     renderer.material = highlightMaterial;
+    Selected?.Invoke();
   }
 
-  public void UnSelect() {
+  public void UnSelect()
+  {
+    IsSelected = false;
+    selectedObject = null;
     renderer.material = originalMaterial;
+    UnSelected?.Invoke();
   }
 }
