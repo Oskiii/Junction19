@@ -6,10 +6,10 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using UnityEngine.XR.ARFoundation;
-public class AppController : MonoBehaviour
+public class ARScanner : MonoBehaviour
 {
     public List<Transform> CloudAnchors;
-    public static event Action<Transform> CloudAnchorCreated;
+    public event Action<Transform> CloudAnchorCreated;
     [SerializeField]
     private string idToLoad = "ua-72534c9bd7f327a513597f1354706d75";
 
@@ -22,7 +22,7 @@ public class AppController : MonoBehaviour
     [SerializeField]
     private ARRaycastManager RaycastManager;
     [SerializeField]
-    private InputField InputField;
+    private Canvas _scanningCanvas;
     [SerializeField]
     private Text OutputText;
 
@@ -40,16 +40,24 @@ public class AppController : MonoBehaviour
     private AppMode m_AppMode = AppMode.TouchToHostCloudReferencePoint;
     private ARCloudReferencePoint m_CloudReferencePoint;
     private string m_CloudReferenceId;
-    IEnumerator Start()
-    {
-        InputField.onEndEdit.AddListener(OnInputEndEdit);
 
+    public static ARScanner Instance;
+
+    private void Awake()
+    {
+        Instance = this;
+    }
+
+    private IEnumerator Start()
+    {
         yield return new WaitForSeconds(5f);
         LoadPointFromId(idToLoad);
     }
-    private void OnInputEndEdit(string text)
+
+    public void StopScanning()
     {
-        LoadPointFromId(text);
+        gameObject.SetActive(false);
+        _scanningCanvas.gameObject.SetActive(false);
     }
 
     private void LoadPointFromId(string id)

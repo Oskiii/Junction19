@@ -7,12 +7,12 @@ public class WorldSpawner : MonoBehaviour
 
     private void Start()
     {
-        AppController.CloudAnchorCreated += OnCloudAnchorCreated;
+        ARScanner.Instance.CloudAnchorCreated += OnCloudAnchorCreated;
     }
 
     private void OnDestroy()
     {
-        AppController.CloudAnchorCreated -= OnCloudAnchorCreated;
+        ARScanner.Instance.CloudAnchorCreated -= OnCloudAnchorCreated;
     }
 
     private void OnCloudAnchorCreated(Transform t)
@@ -20,5 +20,7 @@ public class WorldSpawner : MonoBehaviour
         var obj = Instantiate(_worldBasePrefab, Vector3.zero, Quaternion.identity);
         obj.transform.SetParent(t, false);
         print("WORLD BASE SPAWNED " + t.position);
+
+        ARScanner.Instance.StopScanning();
     }
 }
