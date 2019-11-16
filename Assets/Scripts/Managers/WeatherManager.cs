@@ -7,66 +7,65 @@ using UnityEngine.Serialization;
 
 #pragma warning disable 618
 
-public class WeatherManager : NetworkBehaviour
-{
-    public GameObject clouds;
-    [SyncVar]
-    public WeatherType currentWeather;
+public class WeatherManager : NetworkBehaviour {
+  public GameObject clouds;
+  public GameObject rainyClouds;
+  [SyncVar]
+  public WeatherType currentWeather;
 
-    private WeatherType _lastWeather;
-    public static WeatherManager Instance { get; private set; }
+  private WeatherType _lastWeather;
+  public static WeatherManager Instance { get; private set; }
 
-    public void Awake()
-    {
-        Instance = this;
-    }
+  public void Awake() {
+    Instance = this;
+  }
 
-    [Server]
-    public void SetWeather(WeatherType weatherType)
-    {
-        currentWeather = weatherType;
-    }
-    
-    [Server]
-    public void ToggleWeather()
-    {
-        switch (currentWeather)
-        {
-            case WeatherType.Clear:
-                SetWeather(WeatherType.Cloudy);
-                break;
-            case WeatherType.Cloudy:
-                SetWeather(WeatherType.Clear);
-                break;
-            default:
-                Debug.Log("Unknown weather type set");
-                return;
-        }
-    }
+  [Server]
+  public void SetWeather(WeatherType weatherType) {
+    currentWeather = weatherType;
+  }
 
-    private void Update()
-    {
-        if (_lastWeather != currentWeather && WorldManager.Instance.Active)
-        {
-            _lastWeather = currentWeather;
-            switch (currentWeather)
-            {
-                case WeatherType.Clear:
-                    clouds.SetActive(false);
-                    break;
-                case WeatherType.Cloudy:
-                    clouds.SetActive(true);
-                    break;
-                default:
-                    Debug.Log("Unknown weather type set");
-                    return;
-            }
-        }
+  [Server]
+  public void ToggleWeather() {
+    switch (currentWeather) {
+      case WeatherType.Clear:
+        SetWeather(WeatherType.Cloudy);
+        break;
+      case WeatherType.Cloudy:
+        SetWeather(WeatherType.Clear);
+        break;
+      case WeatherType.Rainy:
+        SetWeather(WeatherType.Rainy);
+        break;
+      default:
+        Debug.Log("Unknown weather type set");
+        return;
     }
+  }
+
+  private void Update() {
+    if (_lastWeather != currentWeather && WorldManager.Instance.Active) {
+      _lastWeather = currentWeather;
+      switch (currentWeather) {
+        case WeatherType.Clear:
+          clouds.SetActive(false);
+          break;
+        case WeatherType.Cloudy:
+          clouds.SetActive(true);
+          break;
+        case WeatherType.Rainy:
+          rainyClouds.SetActive(true);
+          break;
+        default:
+          Debug.Log("Unknown weather type set");
+          return;
+      }
+    }
+  }
 }
 
-public enum WeatherType
-{
-    Clear,
-    Cloudy
+public enum WeatherType {
+  Clear,
+  Cloudy,
+  Rainy
 }

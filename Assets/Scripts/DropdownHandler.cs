@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class DropdownHandler : MonoBehaviour {
 
-  public List<GameObject> objectOptions;
+  public List<Selectable> objectOptions;
   public bool populateFromEnum = false;
   public TMP_Dropdown dropdown;
   public WeatherManager weatherManager;
@@ -15,7 +15,8 @@ public class DropdownHandler : MonoBehaviour {
     dropdown = GetComponent<TMP_Dropdown>();
     List<string> optionsNames = new List<string>();
 
-    if (!populateFromEnum) {
+    if (!populateFromEnum && WorldManager.Instance != null) {
+      objectOptions = WorldManager.Instance.prefabs;
       foreach (var item in objectOptions) {
         optionsNames.Add(item.name);
       }
