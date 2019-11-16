@@ -49,10 +49,9 @@ public class ARScanner : MonoBehaviour
         Instance = this;
     }
 
-    private IEnumerator Start()
+    private void Start()
     {
-        yield return new WaitForSeconds(5f);
-        LoadPointFromId(idToLoad);
+        StartCoroutine(LoadPointFromIdInTime(idToLoad, 5f));
     }
 
     public void StopScanningAndHide()
@@ -64,6 +63,13 @@ public class ARScanner : MonoBehaviour
         {
             Destroy(item.gameObject);
         }
+    }
+
+    private IEnumerator LoadPointFromIdInTime(string id, float time)
+    {
+        yield return new WaitForSeconds(time);
+
+        LoadPointFromId(id);
     }
 
     private void LoadPointFromId(string id)
@@ -189,8 +195,6 @@ public class ARScanner : MonoBehaviour
             m_CloudReferencePoint.cloudReferenceState;
         OutputText.text += " - " + cloudReferenceState.ToString();
 
-        print("ID: " + m_CloudReferencePoint.cloudReferenceId);
-
         if (cloudReferenceState == CloudReferenceState.Success)
         {
             CloudAnchors.Add(m_CloudReferencePoint.transform);
@@ -198,6 +202,12 @@ public class ARScanner : MonoBehaviour
 
             m_CloudReferencePoint = null;
             m_AppMode = AppMode.TouchToHostCloudReferencePoint;
+        }
+        else
+        {
+            print("Failed, TRYING AGAIN");
+            OutputText.text = "Failed, Retrying in 5s";
+            StartCoroutine(LoadPointFromIdInTime(idToLoad, 5f));
         }
     }
 }
