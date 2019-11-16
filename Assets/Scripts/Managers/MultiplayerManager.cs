@@ -3,13 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.Networking.Match;
+using UnityEngine.Serialization;
+
 #pragma warning disable 618
 
 public class MultiplayerManager : NetworkManager
 {
     public GameObject LobbyCanvas;
-    public GameObject PlayerCanvas;
-    public GameObject DmCanvas;
+    public GameObject LobbyItems;
+    public GameObject PlayerItems;
+    public GameObject DmItems;
     
     
     private NetworkClient _client;
@@ -28,6 +31,7 @@ public class MultiplayerManager : NetworkManager
 
     public void CreateGame()
     {
+        LobbyCanvas.SetActive(false);
         matchMaker.CreateMatch(
             matchName,
             matchSize, 
@@ -42,6 +46,7 @@ public class MultiplayerManager : NetworkManager
 
     public void JoinGame()
     {
+        LobbyCanvas.SetActive(false);
         matchMaker.ListMatches(
             0, 
             20, 
@@ -68,6 +73,10 @@ public class MultiplayerManager : NetworkManager
                 0, 
                 0,
                 OnMatchJoined);
+        }
+        else
+        {
+            LobbyCanvas.SetActive(true);
         }
     }
 
