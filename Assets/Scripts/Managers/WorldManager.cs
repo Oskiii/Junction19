@@ -24,7 +24,8 @@ public class WorldManager : NetworkBehaviour
     
     public GameObject SpawnWorld()
     {
-        return _world = Instantiate(worldPrefab);
+        _world = Instantiate(worldPrefab);
+        return _world;
     }
 
     [Server]
@@ -64,6 +65,7 @@ public class WorldManager : NetworkBehaviour
         {
             RpcSyncedPos(
                 worldItem.id,
+                worldItem.item,
                 worldItem.obj.transform.localPosition,
                 worldItem.obj.transform.localRotation,
                 worldItem.obj.transform.localScale);
@@ -72,7 +74,8 @@ public class WorldManager : NetworkBehaviour
 
     [ClientRpc]
     private void RpcSyncedPos(
-        int id, 
+        int id,
+        int item,
         Vector3 transformLocalPosition, 
         Quaternion transformLocalRotation,
         Vector3 transformLocalScale)
@@ -80,7 +83,16 @@ public class WorldManager : NetworkBehaviour
         if (isServer) return;
         Debug.Log($"Updating position for {id}");
         var worldItem = worldItems.Find(_ => _.id == id);
-        if (worldItem == null) return;
+        if (worldItem == null)
+        {
+            worldItem = new WorldItem()
+            {
+                id = id,
+                item = item,
+                obj = Instantiate(prefabs[item], _world.transform).gameObject
+            };
+            worldItems.Add(worldItem);
+        };
         Debug.Log($"Found object for {id}");
         worldItem.obj.transform.localPosition = transformLocalPosition;
         worldItem.obj.transform.localRotation = transformLocalRotation;
@@ -93,6 +105,31 @@ public class WorldManager : NetworkBehaviour
         {
             UpdateItemPositions();
         }
+    }
+
+    [Server]
+    public void DeleteItem(int id)
+    {
+        var worldItem = worldItems.Find(_ => _.id == id);
+        if (worldItem == null)
+        {
+            return;
+        }
+
+        RpcDeleteItem(id);
+        worldItems.Remove(worldItem);
+    }
+
+    [ClientRpc]
+    private void RpcDeleteItem(int id)
+    {
+        var worldItem = worldItems.Find(_ => _.id == id);
+        if (worldItem == null)
+        {
+            return;
+        }
+
+        worldItems.Remove(worldItem);
     }
 }
 
