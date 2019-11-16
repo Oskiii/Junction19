@@ -17,7 +17,8 @@ public class WorldSpawner : MonoBehaviour
 
     private void OnCloudAnchorCreated(Transform t)
     {
-        var obj = WorldManager.Instance.SpawnWorld();//Instantiate(_worldBasePrefab, Vector3.zero, Quaternion.identity);
+        WorldManager.Instance.SpawnWorld();
+        var obj = WorldManager.Instance.World;
         obj.transform.SetParent(t, false);
         obj.transform.localScale = new Vector3(0.3f, 0.3f, 0.3f);
 
