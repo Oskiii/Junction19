@@ -10,7 +10,7 @@ public class Client : NetworkBehaviour
     void Start()
     {
         MultiplayerManager.Instance.LobbyCanvas.SetActive(false);
-        
+
         if (isServer)
         {
             MultiplayerManager.Instance.DmCanvas.SetActive(true);
@@ -21,7 +21,7 @@ public class Client : NetworkBehaviour
             MultiplayerManager.Instance.PlayerCanvas.SetActive(true);
         }
     }
-    
+
     [Client]
     public void SelectCharacter(int characterId)
     {
@@ -31,7 +31,7 @@ public class Client : NetworkBehaviour
     [Command]
     private void CmdSetCharacter(int characterId, NetworkInstanceId playerId)
     {
-        PlayerManager.Instance.SetCharacter(characterId, (int)playerId.Value);
+        PlayerManager.Instance.SetCharacter(characterId, (int) playerId.Value);
     }
 
     public override void OnStartLocalPlayer()
@@ -39,14 +39,14 @@ public class Client : NetworkBehaviour
         PlayerManager.Instance.LocalClient = this;
     }
 
-    public void MoveCharacter(int playerId, Vector3 localPosition, float dist)
+    public void MoveCharacter(int playerId, Vector3 localPosition, float dist, Vector3 worldDir)
     {
-        CmdMoveCharacter(playerId, localPosition, dist);
+        CmdMoveCharacter(playerId, localPosition, dist, worldDir);
     }
 
     [Command]
-    public void CmdMoveCharacter(int playerId, Vector3 worldLocalPosition, float dist)
+    public void CmdMoveCharacter(int playerId, Vector3 worldLocalPosition, float dist, Vector3 worldDir)
     {
-        PlayerManager.Instance.SetCharacterMovePoint(playerId, worldLocalPosition, dist);
+        PlayerManager.Instance.SetCharacterMovePoint(playerId, worldLocalPosition, dist, worldDir);
     }
 }
