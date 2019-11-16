@@ -65,7 +65,7 @@ public class MoveMonsterToClickPoint : MonoBehaviour
 
         if (dist < _maxMoveRadius)
         {
-            MonsterManager.Instance.MoveMonster(_monsterContainer.Monster.monsterId, posWorldPosition, dist);
+            MonsterManager.Instance.MoveMonster(_monsterContainer.Monster.monsterId, posWorldPosition, dist, (pos - transform.position).normalized);
             _selectable.UnSelect();
         }
     }

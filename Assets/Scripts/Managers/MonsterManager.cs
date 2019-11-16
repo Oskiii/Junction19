@@ -128,12 +128,12 @@ public class MonsterManager : NetworkBehaviour
     }
 
     [Server]
-    public void MoveMonster(int monsterId, Vector3 posWorldPosition, float dist)
+    public void MoveMonster(int monsterId, Vector3 posWorldPosition, float dist, Vector3 worldDir)
     {
         var monster = monsters.Find(_ => _.monsterId == monsterId);
         if (monster != null)
         {
-            monster.obj.GetComponent<MoveCharacter>().MoveTowards(posWorldPosition, dist);
+            monster.obj.GetComponent<MoveCharacter>().MoveTowards(posWorldPosition, dist, worldDir);
         }
     }
 }
