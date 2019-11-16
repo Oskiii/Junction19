@@ -1063,6 +1063,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 248700c0998e4ee5bfe1a6724407ee29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _rayCastMask:
+    serializedVersion: 2
+    m_Bits: 256
   _maxMoveRadius: 6
   _moveRadiusPrefab: {fileID: 6947928174851101214, guid: 228c735d088af400f896e67a6398caf0,
     type: 3}

@@ -5,6 +5,9 @@ using UnityEngine.AI;
 public class MoveMonsterToClickPoint : MonoBehaviour
 {
     [SerializeField]
+    private LayerMask _rayCastMask;
+    
+    [SerializeField]
     private float _maxMoveRadius;
     [SerializeField]
     private MoveRadius _moveRadiusPrefab;
@@ -47,7 +50,7 @@ public class MoveMonsterToClickPoint : MonoBehaviour
         {
             RaycastHit hit;
 
-            if (Physics.Raycast(FindObjectOfType<Camera>().ScreenPointToRay(Input.mousePosition), out hit, 100, 8))
+            if (Physics.Raycast(FindObjectOfType<Camera>().ScreenPointToRay(Input.mousePosition), out hit, 100, _rayCastMask))
             {
                 MoveToIfInRadiusAndUnselect(hit.point);
             }
