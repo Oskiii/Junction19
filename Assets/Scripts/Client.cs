@@ -9,7 +9,7 @@ public class Client : NetworkBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        MultiplayerManager.Instance.LobbyCanvas.SetActive(false);
+        MultiplayerManager.Instance.LobbyItems.SetActive(false);
 
         if (isServer)
         {
