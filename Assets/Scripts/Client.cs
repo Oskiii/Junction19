@@ -18,6 +18,7 @@ public class Client : NetworkBehaviour
         }
         else
         {
+            WorldManager.Instance.HideWorld();
             MultiplayerManager.Instance.PlayerItems.SetActive(true);
         }
     }
