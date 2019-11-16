@@ -3,39 +3,46 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.Networking.Match;
+#pragma warning disable 618
 
-public class MultiplayerManager : MonoBehaviour
+public class MultiplayerManager : NetworkManager
 {
-    private NetworkManager _manager;
-    private NetworkClient _client;
+    public Canvas LobbyCanvas;
+    public Canvas PlayerCanvas;
+    public Canvas DmCanvas;
     
+    
+    private NetworkClient _client;
+
+    public static MultiplayerManager Instance { get; private set; }
+
     // Start is called before the first frame update
     void Start()
     {
-        _manager = GetComponent<NetworkManager>();
-        if (_manager.matchMaker == null)
+        Instance = this;
+        if (matchMaker == null)
         {
-            _manager.StartMatchMaker();
+            StartMatchMaker();
         }
     }
 
     public void CreateGame()
     {
-        _manager.matchMaker.CreateMatch(
-            _manager.matchName,
-            _manager.matchSize, 
+        matchMaker.CreateMatch(
+            matchName,
+            matchSize, 
             true, 
             "", 
             "", 
             "", 
             0, 
             0, 
-            _manager.OnMatchCreate);
+            OnMatchCreate);
     }
 
     public void JoinGame()
     {
-        _manager.matchMaker.ListMatches(
+        matchMaker.ListMatches(
             0, 
             20, 
             "", 
@@ -45,24 +52,15 @@ public class MultiplayerManager : MonoBehaviour
             OnMatchList);
     }
 
-    private void OnMatchList(bool success, string extendedInfo, List<MatchInfoSnapshot> matchList)
+    public override void OnMatchList(bool success, string extendedInfo, List<MatchInfoSnapshot> matchList)
     {
-        if (LogFilter.logDebug)
-        {
-            Debug.LogFormat(
-                "NetworkManager OnMatchList Success:{0}, ExtendedInfo:{1}, matchList.Count:{2}", 
-                success, 
-                extendedInfo, 
-                matchList.Count);
-        }
+        base.OnMatchList(success, extendedInfo, matchList);
 
-        _manager.matches = matchList;
-
-        if (_manager.matches.Count == 1)
+        if (matches.Count == 1)
         {
-            var match = _manager.matches[0];
-            _manager.matchName = match.name;
-            _manager.matchMaker.JoinMatch(
+            var match = matches[0];
+            matchName = match.name;
+            matchMaker.JoinMatch(
                 match.networkId,
                 "", 
                 "", 
@@ -71,22 +69,15 @@ public class MultiplayerManager : MonoBehaviour
                 0,
                 OnMatchJoined);
         }
-            
     }
 
-    private void OnMatchJoined(bool success, string extendedInfo, MatchInfo matchInfo)
+    public override void OnMatchJoined(bool success, string extendedInfo, MatchInfo matchInfo)
     {
-        if (LogFilter.logDebug)
-        {
-            Debug.LogFormat("NetworkManager OnMatchJoined Success:{0}, ExtendedInfo:{1}, matchInfo:{2}",
-                success,
-                extendedInfo,
-                matchInfo);
-        }
+        base.OnMatchJoined(success, extendedInfo, matchInfo);
+    }
 
-        if (success)
-        {
-            _client = _manager.StartClient(matchInfo);
-        }
+    public override void OnServerConnect(NetworkConnection conn)
+    {
+        Debug.Log("Client " + conn.connectionId + " Connected!"); ;
     }
 }
