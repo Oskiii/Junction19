@@ -39,14 +39,14 @@ public class Client : NetworkBehaviour
         PlayerManager.Instance.LocalClient = this;
     }
 
-    public void MoveCharacter(int characterPlayerId, Vector3 localPosition)
+    public void MoveCharacter(int playerId, Vector3 localPosition, float dist)
     {
-        throw new System.NotImplementedException();
+        CmdMoveCharacter(playerId, localPosition, dist);
     }
 
     [Command]
-    public void CmdMoveCharacter(int playerId, Vector3 worldLocalPosition)
+    public void CmdMoveCharacter(int playerId, Vector3 worldLocalPosition, float dist)
     {
-        PlayerManager.Instance.SetCharacter(playerId, worldLocalPosition);
+        PlayerManager.Instance.SetCharacterMovePoint(playerId, worldLocalPosition, dist);
     }
 }
