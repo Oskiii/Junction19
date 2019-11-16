@@ -10,7 +10,7 @@ public class Selectable : MonoBehaviour {
   private float mZCoord;
 
   private void Start() {
-    renderer = GetComponent<Renderer>();
+    renderer = GetComponentInChildren<Renderer>();
     originalMaterial = renderer.material;
   }
 
