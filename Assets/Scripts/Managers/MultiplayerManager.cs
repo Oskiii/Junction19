@@ -7,9 +7,9 @@ using UnityEngine.Networking.Match;
 
 public class MultiplayerManager : NetworkManager
 {
-    public Canvas LobbyCanvas;
-    public Canvas PlayerCanvas;
-    public Canvas DmCanvas;
+    public GameObject LobbyCanvas;
+    public GameObject PlayerCanvas;
+    public GameObject DmCanvas;
     
     
     private NetworkClient _client;
