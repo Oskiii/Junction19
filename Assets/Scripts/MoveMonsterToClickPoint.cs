@@ -47,7 +47,7 @@ public class MoveMonsterToClickPoint : MonoBehaviour
         {
             RaycastHit hit;
 
-            if (Physics.Raycast(FindObjectOfType<Camera>().ScreenPointToRay(Input.mousePosition), out hit, 100))
+            if (Physics.Raycast(FindObjectOfType<Camera>().ScreenPointToRay(Input.mousePosition), out hit, 100, 8))
             {
                 MoveToIfInRadiusAndUnselect(hit.point);
             }

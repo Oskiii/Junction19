@@ -47,6 +47,7 @@ public class MonsterManager : NetworkBehaviour
         obj.GetComponent<MonsterContainer>().Monster = monster;
         Destroy(monster.obj.GetComponent<MoveMonsterToClickPoint>());
         Destroy(monster.obj.GetComponent<Draggable>());
+        Destroy(monster.obj.GetComponent<Selectable>());
         monsters.Add(monster);
     }
 
@@ -85,6 +86,7 @@ public class MonsterManager : NetworkBehaviour
             monster.obj.GetComponent<MonsterContainer>().Monster = monster;
             Destroy(monster.obj.GetComponent<MoveMonsterToClickPoint>());
             Destroy(monster.obj.GetComponent<Draggable>());
+            Destroy(monster.obj.GetComponent<Selectable>());
             monsters.Add(monster);
         };
         monster.obj.transform.localPosition = transformLocalPosition;
