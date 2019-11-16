@@ -37,7 +37,7 @@ public class PlayerManager : NetworkBehaviour
         Debug.Log($"Player {playerId }Set characterId as {characterId}");
         var character = Instantiate(CharacterModels[characterId], WorldManager.Instance.World.transform);
         character.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
-        character.GetComponent<MoveToClickPoint>().enabled = false;
+        Destroy(character.GetComponent<MoveToClickPoint>());
         Characters.Add(new Character()
         {
             playerId = playerId,
@@ -51,13 +51,15 @@ public class PlayerManager : NetworkBehaviour
     {
         if (isServer) return;
         var character = Instantiate(CharacterModels[characterId], WorldManager.Instance.World.transform);
-        character.GetComponent<Draggable>().enabled = false;
-        Characters.Add(new Character()
+        Destroy(character.GetComponent<Draggable>());
+        var sceneCharacter = new Character()
         {
             playerId = playerId,
             characterId = characterId,
             obj = character
-        });
+        };
+        character.GetComponent<MoveToClickPoint>().Character = sceneCharacter;
+        Characters.Add(sceneCharacter);
     }
     
     [ClientRpc]
@@ -78,7 +80,8 @@ public class PlayerManager : NetworkBehaviour
                 playerId = playerId,
                 obj = Instantiate(CharacterModels[characterId], WorldManager.Instance.World.transform)
             };
-            character.obj.GetComponent<Draggable>().enabled = false;
+            character.obj.GetComponent<MoveToClickPoint>().Character = character;
+            Destroy(character.obj.GetComponent<Draggable>());
             Characters.Add(character);
         };
         character.obj.transform.localPosition = transformLocalPosition;
@@ -107,6 +110,15 @@ public class PlayerManager : NetworkBehaviour
         if (isServer && WorldManager.Instance.World)
         {
             UpdateItemPositions();
+        }
+    }
+
+    public void SetCharacterMovePoint(int playerId, Vector3 worldLocalPosition, float dist)
+    {
+        var character = Characters.Find(_ => _.playerId == playerId);
+        if (character != null)
+        {
+            character.obj.GetComponent<MoveCharacter>().MoveTowards(worldLocalPosition, dist);
         }
     }
 }

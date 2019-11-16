@@ -891,6 +891,7 @@ GameObject:
   - component: {fileID: 711006107990725863}
   - component: {fileID: -1419442908279659685}
   - component: {fileID: -2727875126792953164}
+  - component: {fileID: 1334246499724044275}
   m_Layer: 0
   m_Name: FreeLichHP
   m_TagString: Untagged
@@ -976,6 +977,10 @@ MonoBehaviour:
   _maxMoveRadius: 4
   _moveRadiusPrefab: {fileID: 6947928174851101214, guid: 228c735d088af400f896e67a6398caf0,
     type: 3}
+  Character:
+    playerId: 0
+    characterId: 0
+    obj: {fileID: 0}
 --- !u!114 &-2727875126792953164
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -986,5 +991,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ff59a8d6f932a435f8264b6b153bc94e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1334246499724044275
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100048}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b09324a92a839db4f95a40085b26a02a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
