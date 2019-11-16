@@ -258,6 +258,10 @@ GameObject:
   - component: {fileID: 5806952774556534245}
   - component: {fileID: -414519558086308485}
   - component: {fileID: -778619821451317086}
+  - component: {fileID: 2893141436937642643}
+  - component: {fileID: -1724926999460640462}
+  - component: {fileID: 9106199423062842696}
+  - component: {fileID: 4146825864230519828}
   m_Layer: 0
   m_Name: GruntPBR
   m_TagString: Untagged
@@ -289,7 +293,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3155058319838657794}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 9000000, guid: 406486edf02d8d74da3b2ca225e21254, type: 3}
   m_Controller: {fileID: 9100000, guid: e58bf4525b7cc80459d6f7ff033ea067, type: 2}
   m_CullingMode: 1
@@ -342,6 +346,61 @@ CapsuleCollider:
   m_Height: 1
   m_Direction: 1
   m_Center: {x: 0, y: 1, z: 0}
+--- !u!114 &2893141436937642643
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3155058319838657794}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b09324a92a839db4f95a40085b26a02a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-1724926999460640462
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3155058319838657794}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a337d375c9ee99c47b20f08e81cf6322, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Monster:
+    id: 0
+    monsterId: 0
+    obj: {fileID: 0}
+--- !u!114 &9106199423062842696
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3155058319838657794}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 966721acc6c24bc41b5f78dda6f40a21, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &4146825864230519828
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3155058319838657794}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 248700c0998e4ee5bfe1a6724407ee29, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maxMoveRadius: 6
+  _moveRadiusPrefab: {fileID: 6947928174851101214, guid: 228c735d088af400f896e67a6398caf0,
+    type: 3}
 --- !u!1 &3312486801664689943
 GameObject:
   m_ObjectHideFlags: 0

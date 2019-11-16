@@ -21,11 +21,12 @@ public class Draggable : MonoBehaviour
 
     private void OnMouseDown()
     {
-        mOffset = transform.position - _selectable.GetMouseAsWorldPoint();
+        //mOffset = transform.position - _selectable.GetMouseAsWorldPoint();
     }
 
     private void OnMouseDrag()
     {
+        if (_selectable.ClickedThisFrame) return;
         RaycastHit hit = new RaycastHit();
         if (Physics.Raycast(_camera.ScreenPointToRay(Input.mousePosition), out hit, 100f, _rayCastMask))
         {

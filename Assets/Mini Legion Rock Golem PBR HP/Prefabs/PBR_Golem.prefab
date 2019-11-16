@@ -75,6 +75,10 @@ GameObject:
   - component: {fileID: -8507360537194752961}
   - component: {fileID: 8815524607465226086}
   - component: {fileID: 7931724214219441812}
+  - component: {fileID: 9099885843565621930}
+  - component: {fileID: 8207514114145771245}
+  - component: {fileID: 4630867804707141114}
+  - component: {fileID: -4838446962723063128}
   m_Layer: 0
   m_Name: PBR_Golem
   m_TagString: Untagged
@@ -106,7 +110,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1067925524328404}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 9000000, guid: 8b2d11d64877f0b4cad5d45ec7d53473, type: 3}
   m_Controller: {fileID: 9100000, guid: 64e2ef14a02f69a4b94edbee54ca296a, type: 2}
   m_CullingMode: 1
@@ -159,6 +163,62 @@ CapsuleCollider:
   m_Height: 1
   m_Direction: 1
   m_Center: {x: 0, y: 1.7, z: 0}
+--- !u!114 &9099885843565621930
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1067925524328404}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b09324a92a839db4f95a40085b26a02a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &8207514114145771245
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1067925524328404}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 966721acc6c24bc41b5f78dda6f40a21, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &4630867804707141114
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1067925524328404}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a337d375c9ee99c47b20f08e81cf6322, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Monster:
+    id: 0
+    monsterId: 0
+    obj: {fileID: 0}
+--- !u!114 &-4838446962723063128
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1067925524328404}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 248700c0998e4ee5bfe1a6724407ee29, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maxMoveRadius: 2
+  _moveRadiusPrefab: {fileID: 6947928174851101214, guid: 228c735d088af400f896e67a6398caf0,
+    type: 3}
+  _monsterContainer: {fileID: 0}
 --- !u!1 &1088256926929212
 GameObject:
   m_ObjectHideFlags: 0

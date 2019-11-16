@@ -10,13 +10,19 @@ public class DropdownHandler : MonoBehaviour {
   public TMP_Dropdown dropdown;
   public WeatherManager weatherManager;
   private int selectedIndex = 0;
+  public bool IsMonster;
 
   void Start() {
     dropdown = GetComponent<TMP_Dropdown>();
     List<string> optionsNames = new List<string>();
 
-    if (!populateFromEnum && WorldManager.Instance != null) {
+    if (!populateFromEnum && WorldManager.Instance != null && !IsMonster) {
       objectOptions = WorldManager.Instance.prefabs;
+      foreach (var item in objectOptions) {
+        optionsNames.Add(item.name);
+      }
+    } else if (!populateFromEnum && MonsterManager.Instance != null && IsMonster) {
+      objectOptions = MonsterManager.Instance.prefabs;
       foreach (var item in objectOptions) {
         optionsNames.Add(item.name);
       }
@@ -30,7 +36,14 @@ public class DropdownHandler : MonoBehaviour {
   }
   public void SpawnOption() {
     Debug.Log("Spawning " + dropdown.value);
-    WorldManager.Instance.CreateItem(dropdown.value);
+    if (IsMonster)
+    {
+        MonsterManager.Instance.CreateMonster(dropdown.value);
+    }
+    else
+    {
+      WorldManager.Instance.CreateItem(dropdown.value);
+    }
     //Instantiate(objectOptions[dropdown.value], new Vector3(0, 1, 0), Quaternion.identity);
   }
 

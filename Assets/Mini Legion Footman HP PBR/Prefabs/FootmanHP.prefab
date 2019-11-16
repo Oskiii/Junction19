@@ -827,9 +827,9 @@ GameObject:
   - component: {fileID: 9500000}
   - component: {fileID: -6823441524417820326}
   - component: {fileID: 4918060558153538321}
-  - component: {fileID: -9071264105465935446}
   - component: {fileID: 7029644687491387647}
   - component: {fileID: 477781430008778144}
+  - component: {fileID: -2392132405005889736}
   m_Layer: 0
   m_Name: FootmanHP
   m_TagString: Untagged
@@ -899,25 +899,6 @@ CapsuleCollider:
   m_Height: 2.555138
   m_Direction: 1
   m_Center: {x: 0.015502214, y: 1.0244467, z: 0.2026794}
---- !u!114 &-9071264105465935446
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 100048}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0d393fba77bfc449fb02579eaf3dbc45, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _maxMoveRadius: 4
-  _moveRadiusPrefab: {fileID: 6947928174851101214, guid: 228c735d088af400f896e67a6398caf0,
-    type: 3}
-  Character:
-    playerId: 0
-    characterId: 0
-    obj: {fileID: 0}
 --- !u!114 &7029644687491387647
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -930,6 +911,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff59a8d6f932a435f8264b6b153bc94e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _rayCastMask:
+    serializedVersion: 2
+    m_Bits: 256
 --- !u!114 &477781430008778144
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -942,3 +926,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b09324a92a839db4f95a40085b26a02a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-2392132405005889736
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100048}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 248700c0998e4ee5bfe1a6724407ee29, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maxMoveRadius: 6
+  _moveRadiusPrefab: {fileID: 6947928174851101214, guid: 228c735d088af400f896e67a6398caf0,
+    type: 3}
+  _monsterContainer: {fileID: 0}
