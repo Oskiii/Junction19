@@ -55,16 +55,16 @@ public class MoveToClickPoint : MonoBehaviour
 
     private void MoveToIfInRadiusAndUnselect(Vector3 pos)
     {
-        var localWorldPosition = WorldManager.Instance.World.transform.InverseTransformPoint(transform.position);
-        var posWorldPosition = WorldManager.Instance.World.transform.InverseTransformPoint(pos);
-        float dist = (localWorldPosition - posWorldPosition).magnitude;
-        Debug.DrawLine(localWorldPosition, posWorldPosition, Color.red, 5f);
+        var posInWorldCoords = WorldManager.Instance.World.transform.InverseTransformPoint(transform.position);
+        var targetPosInWorldCoords = WorldManager.Instance.World.transform.InverseTransformPoint(pos);
+        float dist = (targetPosInWorldCoords - posInWorldCoords).magnitude;
+        Debug.DrawLine(posInWorldCoords, targetPosInWorldCoords, Color.red, 5f);
 
         _moveTween.Complete();
 
         if (dist < _maxMoveRadius)
         {
-            PlayerManager.Instance.LocalClient.MoveCharacter(Character.playerId, posWorldPosition, dist);
+            PlayerManager.Instance.LocalClient.MoveCharacter(Character.playerId, targetPosInWorldCoords, dist, (pos - transform.position).normalized);
             _selectable.UnSelect();
         }
     }
