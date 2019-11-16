@@ -21,6 +21,6 @@ public class WorldSpawner : MonoBehaviour
         obj.transform.SetParent(t, false);
         print("WORLD BASE SPAWNED " + t.position);
 
-        ARScanner.Instance.StopScanning();
+        ARScanner.Instance.StopScanningAndHide();
     }
 }
