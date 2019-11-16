@@ -53,7 +53,8 @@ public class ARScanner : MonoBehaviour
 
     private void Start()
     {
-        StartCoroutine(LoadPointFromIdInTime(idToLoad, 5f));
+        if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name != "SampleScene")
+            StartCoroutine(LoadPointFromIdInTime(idToLoad, 5f));
     }
 
     public void StopScanningAndHide()
@@ -208,17 +209,19 @@ public class ARScanner : MonoBehaviour
 
         if (cloudReferenceState == CloudReferenceState.Success)
         {
+            print("GOT EM, ID: " + m_CloudReferencePoint.cloudReferenceId);
             CloudAnchors.Add(m_CloudReferencePoint.transform);
             CloudAnchorCreated?.Invoke(m_CloudReferencePoint.transform);
 
             m_CloudReferencePoint = null;
             m_AppMode = AppMode.TouchToHostCloudReferencePoint;
         }
-        else
+        else if (cloudReferenceState != CloudReferenceState.TaskInProgress)
         {
             print("Failed, TRYING AGAIN");
             OutputText.text = "Failed, Retrying in 5s";
             StartCoroutine(LoadPointFromIdInTime(idToLoad, 5f));
+            m_AppMode = AppMode.TouchToHostCloudReferencePoint;
         }
     }
 }
