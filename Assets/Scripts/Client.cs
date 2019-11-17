@@ -9,18 +9,6 @@ public class Client : NetworkBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        MultiplayerManager.Instance.LobbyItems.SetActive(false);
-
-        if (isServer)
-        {
-            MultiplayerManager.Instance.DmItems.SetActive(true);
-            WorldManager.Instance.SpawnWorld();
-        }
-        else
-        {
-            WorldManager.Instance.HideWorld();
-            MultiplayerManager.Instance.PlayerItems.SetActive(true);
-        }
     }
 
     [Client]
@@ -37,7 +25,18 @@ public class Client : NetworkBehaviour
 
     public override void OnStartLocalPlayer()
     {
-        PlayerManager.Instance.LocalClient = this;
+        MultiplayerManager.Instance.LobbyItems.SetActive(false);
+        if (isServer)
+        {
+            MultiplayerManager.Instance.DmItems.SetActive(true);
+            WorldManager.Instance.SpawnWorld();
+        }
+        else
+        {
+            WorldManager.Instance.HideWorld();
+            MultiplayerManager.Instance.PlayerItems.SetActive(true);
+            PlayerManager.Instance.LocalClient = this;
+        }
     }
 
     public void MoveCharacter(int playerId, Vector3 localPosition, float dist, Vector3 worldDir)
