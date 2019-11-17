@@ -17,6 +17,8 @@ public class WorldSpawner : MonoBehaviour
 
     private void OnCloudAnchorCreated(Transform t)
     {
+        if (WorldManager.Instance == null) return;
+
         WorldManager.Instance.SpawnWorld();
         var obj = WorldManager.Instance.World;
         obj.transform.SetParent(t, false);
